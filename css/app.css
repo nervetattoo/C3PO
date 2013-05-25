@@ -1,0 +1,26 @@
+.hide {
+    display: none;
+}
+
+.page {
+    padding: 10px 0;
+    width: 100%;
+    background: white;
+}
+
+#map {
+    width: 100%;
+}
+#map-object {
+    min-height: 300px;
+    width: 100%;
+    z-index: 2;
+}
+
+.main .row {
+    padding-bottom: 10px;
+    border-bottom: 1px solid silver;
+}
+
+ul { border: 1px solid red; height:100%; }
+li { border: 1px solid green; }
