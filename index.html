@@ -25,12 +25,15 @@
 </head>
 
 <body>
-    <div id="main" class="page">
+    <div class="container-fluid">
+        <div id="main" class="page row-fluid">
     </div>
 
-    <div id="map" class="page">
-        <button type="button" class="close">Close</button>
-        <div id="map-object"></div>
+    <div id="map" class="page row-fluid">
+        <div class="row">
+            <button type="button" class="close">Close</button>
+        </div>
+        <div id="map-object" class="row"></div>
     </div>
 
     <script id="tpl-list" type="text/x-handlebars-template">
@@ -57,6 +60,7 @@
     <script type="text/javascript" src="/components/handlebars/handlebars.js"></script>
     <script type="text/javascript" src="/components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/components/backbone/backbone.js"></script>
+    <script type="text/javascript" src="/components/spin.js/spin.js"></script>
 
     <script type="text/javascript" src="js/geoloc.js"></script>
     <script type="text/javascript" src="js/webapp.js"></script>

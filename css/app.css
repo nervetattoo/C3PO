@@ -3,24 +3,22 @@
 }
 
 .page {
-    padding: 10px 0;
-    width: 100%;
     background: white;
 }
 
 #map {
+    position: absolute;
     width: 100%;
+    top: 90%;
+    -moz-transition: top .5s ease;
+    transition: top .5s ease
 }
+
+#map.in {
+    top: 0;
+}
+
 #map-object {
     min-height: 300px;
-    width: 100%;
     z-index: 2;
 }
-
-.main .row {
-    padding-bottom: 10px;
-    border-bottom: 1px solid silver;
-}
-
-ul { border: 1px solid red; height:100%; }
-li { border: 1px solid green; }

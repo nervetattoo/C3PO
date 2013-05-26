@@ -1,14 +1,18 @@
 (function($) {
     var template = Handlebars.compile(document.getElementById('tpl-list').innerHTML);
-
-    var $map = $('#map').css({
-        position: 'absolute',
-        left: 0,
-        bottom: '-490px'
-    });
-    var $list = $('#main');
     var canvas = document.getElementById('map-object');
     var container = document.getElementById('main');
+
+    // Start spinner
+    var spinner = new Spinner({
+        lines: 12,
+        top: '100px',
+        hwaccel: true
+    }).spin(container);
+
+    var $map = $('#map');
+    $map.find('.row').css({width: $map.width()});
+    var $list = $('#main');
     var map = new google.maps.Map(canvas, {
         center: new google.maps.LatLng(0,0),
         zoom: 14,
@@ -21,23 +25,18 @@
         return;
     }
 
-     console.log("ASDASD")
     // Geolocation
     navigator.geolocation.getCurrentPosition(
         function (position) {
-            console.log('success');
-            container.innerHTML = position.coords.latitude;
             map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
             Backbone.history.start()
+            window.location.hash = '';
             getPlaces();
         },
         function (position) {
-            console.log('error', position.code, position.message);
-            container.innerHTML = "Failed to get your current location";
+            container.innerHTML = position.message || 'Some geoloc stuff failed';
         },
-        {
-            timeout: 5000
-        }
+        {timeout: 5000}
     );
 
     $('button.close').on('click', function(e) {
@@ -106,11 +105,7 @@
                 directionsDisplay.setMap(map);
                 this.directionsService.route(directionRequest, this.renderDirection);
             }
-            $map.css({
-                position: 'absolute',
-                bottom: null,
-                top: 10
-            });
+            $map.addClass('in');
         },
 
         renderDirection: function(result, status) {
@@ -121,11 +116,7 @@
 
         home: function() {
             console.log('yeah');
-            $map.css({
-                position: 'absolute',
-                bottom: '-490px',
-                top: 'auto'
-            });
+            $map.removeClass('in');
         }
     });
     var appRouter = new Router;
